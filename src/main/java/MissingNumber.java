@@ -36,11 +36,15 @@ public class MissingNumber {
                 min = num;
             }
         }
-        int prevNumber = min - 1;
+        /*int prevNumber = min - 1;
         while (prevNumber !=0) {
             actualSum += prevNumber;
             prevNumber--;
-        }
+        }*/
+
+        //add natural sum for non-existing previous part of array
+        int prevNumber = min - 1;
+        actualSum += prevNumber*(prevNumber+1)/2;
 
         int alteredLength = numbers.length + min;
         int naturalSum = alteredLength * (alteredLength + 1) / 2;
