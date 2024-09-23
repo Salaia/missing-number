@@ -24,7 +24,7 @@ public class MissingNumber {
 
     /*
     Example 2 gives us [7, 9,10, 11, 12] sequence, that doesn't start with 0.
-    Again, this can be solved via natural sum. But is it good?
+    Again, this can be solved via natural sum. Just add the natural sum of ghost prev-numbers
      */
     public int findMissingNumberRandomSequenceViaNaturalSum(int[] numbers) {
         int min = numbers[0];
@@ -36,11 +36,6 @@ public class MissingNumber {
                 min = num;
             }
         }
-        /*int prevNumber = min - 1;
-        while (prevNumber !=0) {
-            actualSum += prevNumber;
-            prevNumber--;
-        }*/
 
         //add natural sum for non-existing previous part of array
         int prevNumber = min - 1;
@@ -53,16 +48,20 @@ public class MissingNumber {
     }
 
     /*
-    What if we have [991,992,994,995] and natural sum will have too many steps?
-    Sorting will work better if sequence length is much smaller, then starting number
+    The last challenge is this:
+    "Function finds a first missing number occurrence in the sequence"
+    Wow, so there might be several missing numbers,
+    and we need to find the first occurrence?..
+    Well then, it's definitely work for sorting!
      */
-    public int sortAndSearchBigNumbers(int[] numbers) {
+    public int findFirstMissingNumber(int[] numbers) {
         Arrays.sort(numbers); // or we can sort manually
         for (int i = 1; i < numbers.length; i++) {
             if (numbers[i] != numbers[i-1]+1) {
                 return numbers[i]-1;
             }
         }
-        return -1; // this is not meant to happen if testcase is correct, throw respective exception in prod
+        return -1; // this is not meant to happen if there is at least one missing number, throw respective exception in prod
     }
+
 }

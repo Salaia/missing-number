@@ -7,10 +7,6 @@ public class MissingNumberTest {
     MissingNumber mn = new MissingNumber();
 
     @Test
-    /*
-        Given array of sequent numbers 0,1,2,3...N with missing member.
-        Here it works fine, as it really is an 0,1,2,3...N array
-     */
     public void findMissingNumberViaNaturalSum() {
         int[] input = {5,0,1,3,2};
         int expected = 4;
@@ -19,7 +15,6 @@ public class MissingNumberTest {
     }
 
     @Test
-    // But we fail finding missing number via natural sum with randomly starting sequence
     public void failFindMissingNumberViaNaturalSum() {
         int[] input = {7, 9,10, 11, 12};
         int expected = 8;
@@ -37,9 +32,9 @@ public class MissingNumberTest {
 
     @Test
     public void findMissingNumberInRandomSequenceBySort() {
-        int[] input = {991,992,994,995};
+        int[] input = {997,995,994,992,991};
         int expected = 993;
-        int output = mn.sortAndSearchBigNumbers(input);
+        int output = mn.findFirstMissingNumber(input);
         assertEquals(expected, output);
     }
 }
