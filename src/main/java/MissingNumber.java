@@ -11,8 +11,8 @@ import java.util.Arrays;
 public class MissingNumber {
 
     /*
-    Given array of sequent numbers 0,1,2,3...N with missing member.
-    I'd like to solve it via natural sum.
+        Given array of sequent numbers 0,1,2,3...N with missing member.
+        I'd like to solve it via natural sum.
      */
     public int findMissingNumberNaturalZero(int[] numbers) {
         int naturalSum = numbers.length * (numbers.length + 1) / 2;
@@ -26,8 +26,8 @@ public class MissingNumber {
     }
 
     /*
-    Or we can use a frequency array.
-    Again, we can do so in case sequence is 0,1,2,3...N with missing member
+        Or we can use a frequency array.
+        Again, we can do so in case sequence is 0,1,2,3...N with missing member
      */
     public int findMissingNumberViaFrequencyArray(int[] nums) {
         int[] frequency = new int[nums.length + 1];
@@ -41,7 +41,7 @@ public class MissingNumber {
     }
 
     /*
-    Another approach is to sum up indexes (0,1,2,3...N only)
+        Another approach is to sum up indexes (0,1,2,3...N only)
      */
     public int findMissingNumberViaIndexSum(int[] nums) {
         int IndexSum = 0;
@@ -57,9 +57,9 @@ public class MissingNumber {
 
 
     /*
-    Example 2 gives us [7, 9,10, 11, 12] sequence, that doesn't start with 0.
-    Again, this can be solved via natural sum. Just add the natural sum of ghost prev-numbers.
-    This approach can also manage negative numbers.
+        Example 2 gives us [7, 9,10, 11, 12] sequence, that doesn't start with 0.
+        Again, this can be solved via natural sum. Just add the natural sum of ghost prev-numbers.
+        This approach can also manage negative numbers.
      */
     public int findMissingNumberRandomSequenceViaNaturalSum(int[] numbers) {
         int min = numbers[0];
@@ -84,12 +84,12 @@ public class MissingNumber {
     }
 
     /*
-    The last challenge is this:
-    "Function finds a first missing number occurrence in the sequence"
-    Wow, so there might be several missing numbers,
-    and we need to find the first occurrence?..
-    Unfortunately, it's impossible as the incoming sequence isn't sorted.
-    Yet we can sort it and find the minimum (or the maximum, if you like) missing number.
+        The last challenge is this:
+        "Function finds a first missing number occurrence in the sequence"
+        Wow, so there might be several missing numbers,
+        and we need to find the first occurrence?..
+        Unfortunately, it's impossible as the incoming sequence isn't sorted.
+        Yet we can sort it and find the minimum (or the maximum, if you like) missing number.
      */
     public int findMinimumMissingNumberAmongUnique(int[] numbers) {
         Arrays.sort(numbers); // or we can sort manually
