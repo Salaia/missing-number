@@ -65,19 +65,70 @@ public class MissingNumberTest {
     /* Oops, overflow!
         All methods using sums might get wrong answers because of capacity overflow.
         Sorting methods won't have this problem.
+        We can throw a custom exception if any sum becomes negative because of capacity overflow.
+        In case we expect this may happen.
      */
 
     @Test
     public void sumOverflow() {
         int output = mn.findMissingNumberRandomSequenceViaNaturalSum(new int[]{Integer.MAX_VALUE - 2, Integer.MAX_VALUE});
         int expected = Integer.MAX_VALUE - 1;
+        // output is -2, the program won't even throw an exception.
         assertNotEquals(expected, output);
     }
 
     @Test
-    public void noSumNoSumOverflow() {
+    public void noSumNoSumOverflowAmongUnique() {
         int output = mn.findMinimumMissingNumberAmongUnique(new int[]{Integer.MAX_VALUE - 2, Integer.MAX_VALUE});
         int expected = Integer.MAX_VALUE - 1;
+        assertEquals(expected, output);
+    }
+
+    @Test
+    public void noSumNoSumOverflowAmongNonUnique() {
+        int output = mn.findMinimumMissingNumberAmongNonUnique(new int[]{Integer.MAX_VALUE - 2, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE});
+        int expected = Integer.MAX_VALUE - 1;
+        assertEquals(expected, output);
+    }
+
+    /*
+    What if we have negative numbers in sequence?
+     */
+
+    @Test
+    public void throwExceptionViaFrequencyArray() {
+        int[] input = {-7, -9, -10, -11, -12};
+        //int missingNumber = -8;
+        Exception exception = assertThrows(ArrayIndexOutOfBoundsException.class, () -> {
+            mn.findMissingNumberViaFrequencyArray(input);
+        });
+        String expected = "Index -7 out of bounds for length 6";
+        String actual = exception.getMessage();
+
+        assertTrue(expected.contains(actual));
+    }
+
+    @Test
+    public void failNegativeViaIndexSum() {
+        int[] input = {-7, -9, -10, -11, -12};
+        int expected = -8;
+        int output = mn.findMissingNumberViaIndexSum(input);
+        assertNotEquals(expected, output);
+    }
+
+    @Test
+    public void findNegativeViaRandomSequenceNaturalSum() {
+        int[] input = {-7, -9, -10, -11, -12};
+        int expected = -8;
+        int output = mn.findMissingNumberRandomSequenceViaNaturalSum(input);
+        assertEquals(expected, output);
+    }
+
+    @Test
+    public void findNegativeMissingNumberViaSortAmongUnique() {
+        int[] input = {-7, -9, -10, -11, -12};
+        int expected = -8;
+        int output = mn.findMinimumMissingNumberAmongUnique(input);
         assertEquals(expected, output);
     }
 

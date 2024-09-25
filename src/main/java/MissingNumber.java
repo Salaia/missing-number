@@ -4,6 +4,9 @@ import java.util.Arrays;
  * I decided to provide several solutions as I see some conflicts in problem description.
  * I probably should have asked some clarifying questions,
  * but solving several problems instead of one feels more challenging =)
+ *
+ * Since problem description doesn't give any curtain constraints
+ * I won't test heap size / VM memory overflow and just hope incoming sequence is meant to have reasonable size =)
  */
 public class MissingNumber {
 
@@ -55,7 +58,8 @@ public class MissingNumber {
 
     /*
     Example 2 gives us [7, 9,10, 11, 12] sequence, that doesn't start with 0.
-    Again, this can be solved via natural sum. Just add the natural sum of ghost prev-numbers
+    Again, this can be solved via natural sum. Just add the natural sum of ghost prev-numbers.
+    This approach can also manage negative numbers.
      */
     public int findMissingNumberRandomSequenceViaNaturalSum(int[] numbers) {
         int min = numbers[0];
