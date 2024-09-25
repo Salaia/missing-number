@@ -1,7 +1,6 @@
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MissingNumberTest {
 
@@ -62,4 +61,24 @@ public class MissingNumberTest {
         int output = mn.findMinimumMissingNumberAmongNonUnique(input);
         assertEquals(expected, output);
     }
+
+    /* Oops, overflow!
+        All methods using sums might get wrong answers because of capacity overflow.
+        Sorting methods won't have this problem.
+     */
+
+    @Test
+    public void sumOverflow() {
+        int output = mn.findMissingNumberRandomSequenceViaNaturalSum(new int[]{Integer.MAX_VALUE - 2, Integer.MAX_VALUE});
+        int expected = Integer.MAX_VALUE - 1;
+        assertNotEquals(expected, output);
+    }
+
+    @Test
+    public void noSumNoSumOverflow() {
+        int output = mn.findMinimumMissingNumberAmongUnique(new int[]{Integer.MAX_VALUE - 2, Integer.MAX_VALUE});
+        int expected = Integer.MAX_VALUE - 1;
+        assertEquals(expected, output);
+    }
+
 }

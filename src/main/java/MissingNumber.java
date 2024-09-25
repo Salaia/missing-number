@@ -38,7 +38,7 @@ public class MissingNumber {
     }
 
     /*
-    Another approach is to sum up indexes
+    Another approach is to sum up indexes (0,1,2,3...N only)
      */
     public int findMissingNumberViaIndexSum(int[] nums) {
         int IndexSum = 0;
