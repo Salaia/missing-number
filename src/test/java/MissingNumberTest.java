@@ -65,8 +65,6 @@ public class MissingNumberTest {
     /* Oops, overflow!
         All methods using sums might get wrong answers because of capacity overflow.
         Sorting methods won't have this problem.
-        We can throw a custom exception if any sum becomes negative because of capacity overflow.
-        In case we expect this may happen.
      */
 
     @Test
@@ -128,6 +126,90 @@ public class MissingNumberTest {
     public void findNegativeMissingNumberViaSortAmongUnique() {
         int[] input = {-7, -9, -10, -11, -12};
         int expected = -8;
+        int output = mn.findMinimumMissingNumberAmongUnique(input);
+        assertEquals(expected, output);
+    }
+
+    /*
+     *  Testing borders
+     */
+
+    @Test
+    public void findZeroViaNaturalSum(){
+        int[] input = {1,2,3};
+        int expected = 0;
+        int output = mn.findMissingNumberNaturalZero(input);
+        assertEquals(expected, output);
+    }
+
+    @Test
+    public void findZeroViaFrequencyArray(){
+        int[] input = {1,2,3};
+        int expected = 0;
+        int output = mn.findMissingNumberViaFrequencyArray(input);
+        assertEquals(expected, output);
+    }
+
+    @Test
+    public void findZeroViaIndexSum(){
+        int[] input = {1,2,3};
+        int expected = 0;
+        int output = mn.findMissingNumberViaIndexSum(input);
+        assertEquals(expected, output);
+    }
+
+    @Test
+    public void failZeroViaSorting(){
+        int[] input = {1,2,3};
+        int expected = 0;
+        int output = mn.findMinimumMissingNumberAmongUnique(input);
+        assertNotEquals(expected, output);
+    }
+
+    @Test
+    public void findNViaIndexSum(){
+        int[] input = {0,1,2};
+        int expected = 3;
+        int output = mn.findMissingNumberViaIndexSum(input);
+        assertEquals(expected, output);
+    }
+
+    @Test
+    public void findNViaFrequencyArray(){
+        int[] input = {0,1,2};
+        int expected = 3;
+        int output = mn.findMissingNumberViaFrequencyArray(input);
+        assertEquals(expected, output);
+    }
+
+    @Test
+    public void findNViaNaturalSum(){
+        int[] input = {0,1,2};
+        int expected = 3;
+        int output = mn.findMissingNumberNaturalZero(input);
+        assertEquals(expected, output);
+    }
+
+    @Test
+    public void failFindNViaSorting(){
+        int[] input = {0,1,2};
+        int expected = 3;
+        int output = mn.findMinimumMissingNumberAmongUnique(input);
+        assertNotEquals(expected, output);
+    }
+
+    @Test
+    public void findMinNextToBorderViaSort(){
+        int[] input = {1,3,4};
+        int expected = 2;
+        int output = mn.findMinimumMissingNumberAmongUnique(input);
+        assertEquals(expected, output);
+    }
+
+    @Test
+    public void findMaxNextToBorderViaSort(){
+        int[] input = {1,2,4};
+        int expected = 3;
         int output = mn.findMinimumMissingNumberAmongUnique(input);
         assertEquals(expected, output);
     }

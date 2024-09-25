@@ -32,7 +32,7 @@ public class MissingNumber {
     public int findMissingNumberViaFrequencyArray(int[] nums) {
         int[] frequency = new int[nums.length + 1];
         for (int i = 0; i < nums.length; i++) {
-            frequency[nums[i]]++;
+            frequency[nums[i]]++; // indexes are limited to half of integer max value
         }
         for (int i = 0; i < frequency.length; i++) {
             if (frequency[i] == 0) return i;
@@ -115,4 +115,5 @@ public class MissingNumber {
         }
         return -1; // this is not meant to happen if there is at least one missing number, throw respective exception in prod
     }
+
 }
